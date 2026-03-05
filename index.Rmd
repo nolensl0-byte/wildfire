@@ -3,8 +3,7 @@ title: "wildfires"
 author: "Sophie Nolen"
 date: "`r Sys.Date()`"
 output: 
-  flexdashboard::flex_dashboard:
-    orientation: columns
+  flexdashboard::flex_dashboard
 ---
 
 ```{r setup, include=FALSE}
@@ -50,11 +49,24 @@ co2 <-
 ```
 
 
+
 # Annual number of wildfires
 
-## Wildfires
+Column
+---------------------------------------------------------------------------
+
 ### Wildfires
 ```{r, echo=FALSE}
+tt(wildfires)
+
+```
+
+Column {.tabset .tabset-fade} 
+----------------------------------------------------------------------------
+
+
+### Wildfires
+```{r, echo=FALSE, fig.width=10, fig.height=7}
 
 
 ggplot(wildfires,
@@ -65,14 +77,6 @@ ggplot(wildfires,
   theme_light()
 ```
 
-
-### Wildfires
-```{r, echo=FALSE}
-tt(wildfires)
-
-```
-
-## Left column {.tabset .tabset-fade}
 
 ### Australia
 ```{r, echo=FALSE}
@@ -140,8 +144,14 @@ ggplot(wildfires_canada,
   theme_light()
 ```
 
-> What is Canada doing to prevent wildfires? Canada has created the pan-Canadian Wildland Fire Prevention and Mitigation group. The goals of of this group is to educate the public, to enhance colaboration of the public, strengthen partnerships, and expand investments in prevention methods.
-These methods include fighting fire with fire. This means using prescribed fires to clear up built up fuel in the forests. Burning this reduces the chaances of a devistating fire.
+Column
+--------------------------------------------------------------------------------
+### Imformation
+
+What is Canada doing to prevent wildfires? Canada has created the pan-Canadian Wildland Fire Prevention and Mitigation group. The goals of of this group is to educate the public, to enhance colaboration of the public, strengthen partnerships, and expand investments in prevention methods.
+These methods include fighting fire with fire. This means using prescribed fires to clear up built up fuel in the forests. Burning this reduces the chances of a devastating fire.
+
+--------------------------------------------------------------------------------
 
 # Annual area burned by wildfires
 
