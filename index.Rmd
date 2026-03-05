@@ -1,30 +1,320 @@
 ---
-title: "midterm_project"
+title: "wildfires"
 author: "Sophie Nolen"
-date: "2026-03-05"
-output: html_document
+date: "`r Sys.Date()`"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(flexdashboard)
+library(ggplot2)
+library(dplyr)
+library(knitr)
+library(readr)
+#install.packages("tinytable",
+#  repos = c("https://vincentarelbundock.r-universe.dev", "https://cran.r-project.org")
+#)
+library(tinytable)
+library(leaflet)
 ```
 
-## R Markdown
+```{r, echo=FALSE}
+particles <- read_csv('https://ourworldindata.org/grapher/annual-pm25-emissions-from-wildfires.csv?v=1&csvType=full&useColumnShortNames=true')
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+wild_fires <- read_csv('https://ourworldindata.org/grapher/annual-number-of-fires.csv?v=1&csvType=full&useColumnShortNames=true')
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+area_burnt <- read_csv('https://ourworldindata.org/grapher/annual-area-burnt-by-wildfires.csv?v=1&csvType=full&useColumnShortNames=true')
 
-```{r cars}
-summary(cars)
+carbon <- read_csv('https://ourworldindata.org/grapher/annual-carbon-dioxide-emissions.csv?v=1&csvType=full&useColumnShortNames=true')
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
+```{r, echo=FALSE}
+wildfires <-
+  wild_fires %>% filter(entity %in% c('United States', 'Brazil', 'Canada', 'Australia')) %>% 
+  filter(year %in% c('2015','2016','2017','2018','2019','2020','2021','2022','2023','2024', '2025'))
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+area <- 
+  area_burnt %>% filter(entity %in% c('United States', 'Brazil', 'Canada', 'Australia')) %>% 
+  filter(year %in% c('2015','2016','2017','2018','2019','2020','2021','2022','2023','2024', '2025'))
+
+co2 <-
+  carbon %>% filter(entity %in% c('United States', 'Brazil', 'Canada', 'Australia')) %>% 
+  filter(year %in% c('2015','2016','2017','2018','2019','2020','2021','2022','2023','2024', '2025'))
+
+
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+# Annual number of wildfires
+
+## Wildfires
+### Wildfires
+```{r, echo=FALSE}
+
+
+ggplot(wildfires,
+       aes(x = year,
+           y = events,
+           color=entity))+
+  geom_path(linewidth=1,)+
+  theme_light()
+```
+
+
+### Wildfires
+```{r, echo=FALSE}
+tt(wildfires)
+
+```
+
+## Left column {.tabset .tabset-fade}
+
+### Australia
+```{r, echo=FALSE}
+wildfires_aus <-
+  wildfires %>% filter(entity %in% c('Australia')) %>% 
+  filter(year %in% c('2015','2016','2017','2018','2019','2020','2021','2022','2023','2024', '2025'))
+
+
+
+ggplot(wildfires_aus,
+       aes(x = year,
+           y = events,
+           color=entity))+
+  geom_path(linewidth=1)+
+  theme_light()
+```
+
+
+
+
+### United States
+```{r, echo=FALSE}
+wildfires_usa <-
+  wildfires %>% filter(entity %in% c('United States')) %>% 
+  filter(year %in% c('2015','2016','2017','2018','2019','2020','2021','2022','2023','2024', '2025'))
+
+
+
+ggplot(wildfires_usa,
+       aes(x = year,
+           y = events,
+           color=entity))+
+  geom_path(linewidth=1, color="purple")+
+  theme_light()
+```
+
+### Brazil
+```{r, echo=FALSE}
+wildfires_brazil <-
+  wildfires %>% filter(entity %in% c('Brazil')) %>% 
+  filter(year %in% c('2015','2016','2017','2018','2019','2020','2021','2022','2023','2024', '2025'))
+
+
+ggplot(wildfires_brazil,
+       aes(x = year,
+           y = events,
+           color=entity))+
+  geom_path(linewidth=1, color = "green")+
+  theme_light()
+```
+
+### Canada
+```{r, echo=FALSE}
+wildfires_canada <-
+  wildfires %>% filter(entity %in% c('Canada')) %>% 
+  filter(year %in% c('2015','2016','2017','2018','2019','2020','2021','2022','2023','2024', '2025'))
+
+
+
+ggplot(wildfires_canada,
+       aes(x = year,
+           y = events,
+           color=entity))+
+  geom_path(linewidth=1, color = "blue")+
+  theme_light()
+```
+
+> What is Canada doing to prevent wildfires? Canada has created the pan-Canadian Wildland Fire Prevention and Mitigation group. The goals of of this group is to educate the public, to enhance colaboration of the public, strengthen partnerships, and expand investments in prevention methods.
+These methods include fighting fire with fire. This means using prescribed fires to clear up built up fuel in the forests. Burning this reduces the chaances of a devistating fire.
+
+# Annual area burned by wildfires
+
+## Area burned
+### Area burned
+```{r, echo=FALSE}
+
+ggplot(area,
+       aes(x = year,
+           y = area_ha,
+           fill = entity,
+           color = entity))+
+  geom_path(linewidth = 1)+
+  theme_dark()
+
+```
+
+
+### Area burned
+```{r, echo=FALSE}
+tt(area)
+
+```
+
+
+## Left column {.tabset .tabset-fade}
+
+### Australia
+```{r, echo=FALSE}
+area_canada <-
+  area %>% filter(entity %in% c('Australia')) %>% 
+  filter(year %in% c('2015','2016','2017','2018','2019','2020','2021','2022','2023','2024', '2025'))
+
+
+ggplot(area_canada,
+       aes(x = year,
+           y = area_ha,
+           color=entity))+
+  geom_path(linewidth=1)+
+  theme_dark()
+```
+
+> Why do wildfires burn so much more land in Australia? Brush fires in Australia are their main source of wildfires. These fires can get so intense when they don't need brush to burn. These fires have the ability to use the oxyegen in the soil to burn for a long period of time and travel a far distance. So what is Australia doing to prevent these? Local governments have started implementing new home building techniques. You now need to build with some fire resistant materials to help prevent loss of a home and to hopefully prevent wildfires from spreading.
+
+### United States
+```{r, echo=FALSE}
+area_canada <-
+  area %>% filter(entity %in% c('United States')) %>% 
+  filter(year %in% c('2015','2016','2017','2018','2019','2020','2021','2022','2023','2024', '2025'))
+
+
+ggplot(area_canada,
+       aes(x = year,
+           y = area_ha,
+           color=entity))+
+  geom_path(linewidth=1, color = "purple")+
+  theme_dark()
+```
+
+### Brazil
+```{r, echo=FALSE}
+area_canada <-
+  area %>% filter(entity %in% c('Brazil')) %>% 
+  filter(year %in% c('2015','2016','2017','2018','2019','2020','2021','2022','2023','2024', '2025'))
+
+
+ggplot(area_canada,
+       aes(x = year,
+           y = area_ha,
+           color=entity))+
+  geom_path(linewidth=1, color = "green")+
+  theme_dark()
+```
+
+### Canada
+```{r, echo=FALSE}
+area_canada <-
+  area %>% filter(entity %in% c('Canada')) %>% 
+  filter(year %in% c('2015','2016','2017','2018','2019','2020','2021','2022','2023','2024', '2025'))
+
+
+ggplot(area_canada,
+       aes(x = year,
+           y = area_ha,
+           color=entity))+
+  geom_path(linewidth=1, color = "blue")+
+  theme_dark()
+```
+
+
+
+# CO2 Emmisions
+
+## Carbon Emissions
+### Carbon Emissions
+```{r, echo=FALSE}
+co2 <-
+ co2 %>%
+  mutate(co2 = co2 / 100000)
+
+
+ggplot(co2,
+       aes(x = year,
+           y = co2,
+           color = entity))+
+  geom_point()+
+  theme_light()
+```
+
+### CO2 emissions
+```{r, echo=FALSE}
+tt(co2)
+
+```
+
+## Left column {.tabset .tabset-fade}
+
+### Australia
+```{r, echo=FALSE}
+co2_aus <-
+  co2 %>% filter(entity %in% c('Australia')) %>% 
+  filter(year %in% c('2015','2016','2017','2018','2019','2020','2021','2022','2023','2024', '2025'))
+
+
+ggplot(co2_aus,
+       aes(x = year,
+           y = co2,
+           color=entity))+
+  geom_point()+
+  theme_light()
+```
+
+### United States
+```{r, echo=FALSE}
+co2_usa <-
+  co2 %>% filter(entity %in% c('United States')) %>% 
+  filter(year %in% c('2015','2016','2017','2018','2019','2020','2021','2022','2023','2024', '2025'))
+
+
+ggplot(co2_usa,
+       aes(x = year,
+           y = co2,
+           color=entity))+
+  geom_path(linewidth=1, color = "purple")+
+  theme_light()
+```
+
+### Brazil
+```{r, echo=FALSE}
+co2_brazil <-
+  co2 %>% filter(entity %in% c('Brazil')) %>% 
+  filter(year %in% c('2015','2016','2017','2018','2019','2020','2021','2022','2023','2024', '2025'))
+
+
+ggplot(co2_usa,
+       aes(x = year,
+           y = co2,
+           color=entity))+
+  geom_point(color = "green")+
+  theme_light()
+```
+
+### Canada
+```{r, echo=FALSE}
+co2_canada <-
+  co2 %>% filter(entity %in% c('Canada')) %>% 
+  filter(year %in% c('2015','2016','2017','2018','2019','2020','2021','2022','2023','2024', '2025'))
+
+
+ggplot(co2_usa,
+       aes(x = year,
+           y = co2,
+           color=entity))+
+  geom_point(color = "blue")+
+  theme_light()
+```
