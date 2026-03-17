@@ -146,18 +146,44 @@ ggplot(wildfires_canada,
 
 Column
 --------------------------------------------------------------------------------
-### Imformation
+### SDG: Life on Land and Climate Action
 
-What is Canada doing to prevent wildfires? Canada has created the pan-Canadian Wildland Fire Prevention and Mitigation group. The goals of of this group is to educate the public, to enhance colaboration of the public, strengthen partnerships, and expand investments in prevention methods.
-These methods include fighting fire with fire. This means using prescribed fires to clear up built up fuel in the forests. Burning this reduces the chances of a devastating fire.
+What is Canada doing to prevent wildfires? 
+Canada has created the pan-Canadian Wild land Fire Prevention and Mitigation group. The goals of of this group is to educate the public, to enhance collaboration of the public, strengthen partnerships, and expand investments in prevention methods. These methods include fighting fire with fire. This means using prescribed fires to clear up built up fuel in the forests. Burning this reduces the chances of a devastating fire.
+
+--------------------------------------------------------------------------------
+
+What is a Australia doing to prevent wildfires? 
+Fires have been a part of Australia's history for hundreds of years. Over the years these fires have become increasingly more dangerous. When is comes to spreading the fires, the government of Australia is beginning to implement fire resistant buildings in areas where fire danger is high. This will hopefully help with the spread of wildfires and their intensity.
+
+--------------------------------------------------------------------------------
+
+What is the United States doing to prevent wildfires?
+Similarly to Canada they are using the method of fighting fire with fire. Like in Sewanee, with our prescribed fire team, the forest service is doing controlled burns in specific areas with the goal of preventing the spread of wildfires. These controlled burns are used to limit the amount of built up fuel in that forest. This type of burning can also be used for restoration purposes.
+
+--------------------------------------------------------------------------------
+
+What is Brazil doing to prevent wildfires?
+With Brazil being in a more tropical location then the other countries listed, the higher levels of heat positively effect the intensity of the wildfires. Brazil is also experimenting with the idea of fighting fire with fire. This strategy has decreased the amount of wildfires form 6,600 wildfires in 2024 to 125 in 2025. This just shows the power of fighting fire with fire.
 
 --------------------------------------------------------------------------------
 
 # Annual area burned by wildfires
 
-## Area burned
+Column
+---------------------------------------------------------------------------
+
 ### Area burned
 ```{r, echo=FALSE}
+tt(area)
+
+```
+
+Column {.tabset .tabset-fade} 
+---------------------------------------------------------------------------
+
+### Area burned
+```{r, echo=FALSE, fig.width=10, fig.height=7}
 
 ggplot(area,
        aes(x = year,
@@ -170,14 +196,6 @@ ggplot(area,
 ```
 
 
-### Area burned
-```{r, echo=FALSE}
-tt(area)
-
-```
-
-
-## Left column {.tabset .tabset-fade}
 
 ### Australia
 ```{r, echo=FALSE}
@@ -194,7 +212,6 @@ ggplot(area_canada,
   theme_dark()
 ```
 
-> Why do wildfires burn so much more land in Australia? Brush fires in Australia are their main source of wildfires. These fires can get so intense when they don't need brush to burn. These fires have the ability to use the oxyegen in the soil to burn for a long period of time and travel a far distance. So what is Australia doing to prevent these? Local governments have started implementing new home building techniques. You now need to build with some fire resistant materials to help prevent loss of a home and to hopefully prevent wildfires from spreading.
 
 ### United States
 ```{r, echo=FALSE}
@@ -211,6 +228,7 @@ ggplot(area_canada,
   theme_dark()
 ```
 
+
 ### Brazil
 ```{r, echo=FALSE}
 area_canada <-
@@ -225,6 +243,7 @@ ggplot(area_canada,
   geom_path(linewidth=1, color = "green")+
   theme_dark()
 ```
+
 
 ### Canada
 ```{r, echo=FALSE}
@@ -241,13 +260,34 @@ ggplot(area_canada,
   theme_dark()
 ```
 
+Column
+--------------------------------------------------------------------------------
+### SDG: Life on Land and Climate Action
+
+Australia 
+
+Based on the graphs Australia reaches the most amount of hectares burned. Australia is a very hot country and has a long season of dry and hot weather. These are the perfect conditions for a very hot and fast moving wildfire. Australia specifically experiences bush fires. These are low to the ground fast moving fires. What is very scary about these types of fires is that they can burn just off of the oxygen provided by the soil. Burning this soil so intensely makes the soil infertile this then takes away farm land and any food or habitat for wildlife. Not only does it make the soil infertile but without any vegetation holding the soil down, this increases the erosion risk.
+
+
+--------------------------------------------------------------------------------
 
 
 # CO2 Emmisions
 
-## Carbon Emissions
-### Carbon Emissions
+Column
+--------------------------------------------------------------------------------
+
+### CO2 emissions
 ```{r, echo=FALSE}
+tt(co2)
+
+```
+
+Column {.tabset .tabset-fade} 
+--------------------------------------------------------------------------------
+
+### Carbon Emissions
+```{r, echo=FALSE, fig.width=10, fig.height=7}
 co2 <-
  co2 %>%
   mutate(co2 = co2 / 100000)
@@ -261,13 +301,7 @@ ggplot(co2,
   theme_light()
 ```
 
-### CO2 emissions
-```{r, echo=FALSE}
-tt(co2)
 
-```
-
-## Left column {.tabset .tabset-fade}
 
 ### Australia
 ```{r, echo=FALSE}
@@ -328,3 +362,49 @@ ggplot(co2_usa,
   geom_point(color = "blue")+
   theme_light()
 ```
+
+Column
+--------------------------------------------------------------------------------
+### SDG: Life on Land and Climate Action
+
+--------------------------------------------------------------------------------
+
+Wildfires and climate change 
+
+Wildfires are becoming the "new normal". In all of these countries they are trying different strategies to help prevent wildfires from becoming our "new normal". With wildfires becoming so common, this increases the CO2 emissions. CO2 emissions are so important when talking about climate change because, this gas is acting as a blanket in the atmosphere and keeping all of the other harmful emissions in the lowest level of the atmosphere that we breath in. With the increase in greenhouse gasses from wildfires this affects our climate and is increasing the temperature and dryness of the Earth. With a hotter and dryer climate this will increase the risk of wildfires everywhere, which will then start over the whole process with releasing even more CO2. So, the more CO2 released warms the Earth which increases the amount of wildfires and then that will cycle back to releasing more CO2 and so on.
+
+
+--------------------------------------------------------------------------------
+
+# Citations
+
+[https://www.climatecouncil.org.au/not-normal-climate-change-bushfire-web/](https://www.climatecouncil.org.au/not-normal-climate-change-bushfire-web/)
+
+[https://cop30.br/en/news-about-cop30/brasil-reduces-wildfires-adopts-measures-to-lead-global-response-1#:~:text=A%20record%20number%20of%20firefighters,peak%20of%20the%20dry%20season.](https://cop30.br/en/news-about-cop30/brasil-reduces-wildfires-adopts-measures-to-lead-global-response-1#:~:text=A%20record%20number%20of%20firefighters,peak%20of%20the%20dry%20season.)
+
+[https://www.preventionweb.net/resource/case-study/wildfire-management-australia#:~:text=Wildfire%20disasters%20are%20being%20avoided,minimise%20fires%20and%20save%20lives.](https://www.preventionweb.net/resource/case-study/wildfire-management-australia#:~:text=Wildfire%20disasters%20are%20being%20avoided,minimise%20fires%20and%20save%20lives.)
+
+[https://www.bushheritage.org.au/what-we-do/our-challenge/fire-management?srsltid=AfmBOoqKA6lQQJG5rY_NwDUbTh_xqaCKruZSIV3p4ko8fy8OYNSswdJt](https://www.bushheritage.org.au/what-we-do/our-challenge/fire-management?srsltid=AfmBOoqKA6lQQJG5rY_NwDUbTh_xqaCKruZSIV3p4ko8fy8OYNSswdJt)
+
+[https://www.ccfm.org/wp-content/uploads/2024/06/CWFPM-Strategy-EN-2024-06-05-FINAL-_V09.pdf](https://www.ccfm.org/wp-content/uploads/2024/06/CWFPM-Strategy-EN-2024-06-05-FINAL-_V09.pdf)
+
+[https://www.sciencedirect.com/science/article/pii/S2211464525002799](https://www.sciencedirect.com/science/article/pii/S2211464525002799)
+
+[https://csl.noaa.gov/factsheets/csdWildfiresFIREX.pdf](https://csl.noaa.gov/factsheets/csdWildfiresFIREX.pdf)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
