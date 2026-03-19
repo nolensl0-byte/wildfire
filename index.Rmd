@@ -390,8 +390,11 @@ Wildfires are becoming the "new normal". In all of these countries they are tryi
 
 [https://csl.noaa.gov/factsheets/csdWildfiresFIREX.pdf](https://csl.noaa.gov/factsheets/csdWildfiresFIREX.pdf)
 
+[wildfire dataset](https://ourworldindata.org/grapher/annual-number-of-fires.csv?v=1&csvType=full&useColumnShortNames=true)
 
+[Area Burned dataset](https://ourworldindata.org/grapher/annual-area-burnt-by-wildfires.csv?v=1&csvType=full&useColumnShortNames=true)
 
+[CO2 emmisions dataset](https://ourworldindata.org/grapher/annual-carbon-dioxide-emissions.csv?v=1&csvType=full&useColumnShortNames=true)
 
 
 
