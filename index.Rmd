@@ -329,7 +329,7 @@ ggplot(co2_usa,
        aes(x = year,
            y = co2,
            color=entity))+
-  geom_path(linewidth=1, color = "purple")+
+  geom_point(color = "purple")+
   theme_light()
 ```
 
